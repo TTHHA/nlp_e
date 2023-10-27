@@ -1,0 +1,4 @@
+lightning 
+transformers 
+torch
+numpy >= 1.19.2
