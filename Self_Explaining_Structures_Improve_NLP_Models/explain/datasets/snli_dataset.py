@@ -30,7 +30,7 @@ class SNLIDataset(Dataset):
         self.result = []
         data = pd.read_csv("/content/data.csv")
         for i in range(len(data)):
-          self.result.append((data['claim'][i], data['evidence_top1'], label_map[data['verdict'][i]]))
+          self.result.append((data['claim'][i], data['evidence_top1'][i], label_map[data['verdict'][i]]))
         self.tokenizer = RobertaTokenizer.from_pretrained(bert_path)
 
     def __len__(self):
