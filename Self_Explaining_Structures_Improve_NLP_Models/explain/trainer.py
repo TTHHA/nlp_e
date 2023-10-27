@@ -235,7 +235,7 @@ def train(args):
         # del args_dict['tpu_cores']
         json.dump(args_dict, f, indent=4)
 
-    trainer = Trainer(accelerator="cpu",logger=logger)
+    trainer = Trainer(accelerator="gpu",devices=1,logger=logger)
     trainer.fit(model)
 
 
