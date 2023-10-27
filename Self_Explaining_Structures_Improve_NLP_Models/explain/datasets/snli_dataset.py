@@ -49,9 +49,13 @@ class SNLIDataset(Dataset):
         if len(input_ids) > self.max_length - 2:
             input_ids = input_ids[:self.max_length - 2]
         # convert list to tensor
-        length = torch.LongTensor([len(input_ids) + 2])
-        input_ids = torch.LongTensor([0] + input_ids + [2])
-        label = torch.LongTensor([label])
+        # length = torch.LongTensor([len(input_ids) + 2])
+        # input_ids = torch.LongTensor([0] + input_ids + [2])
+        # label = torch.LongTensor([label])
+        length = torch.Tensor([len(input_ids) + 2])
+        input_ids = torch.Tensor([0] + input_ids + [2])
+        label = torch.Tensor([label])
+        
         return input_ids, label, length
 
 
