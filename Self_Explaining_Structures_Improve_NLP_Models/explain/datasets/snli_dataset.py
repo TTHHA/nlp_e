@@ -28,7 +28,7 @@ class SNLIDataset(Dataset):
         self.max_length = max_length
         label_map = {"SUPPORT": 0, 'REFUTED': 1, "NEI": 2}
         self.result = []
-        data = pd.read_csv("/content/data.csv")
+        data = pd.read_csv(directory)
         for i in range(len(data)):
           self.result.append((data['claim'][i], data['evidence_top1'][i], label_map[data['verdict'][i]]))
         self.tokenizer = RobertaTokenizer.from_pretrained(bert_path)
