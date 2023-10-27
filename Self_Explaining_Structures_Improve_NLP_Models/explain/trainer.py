@@ -229,14 +229,6 @@ def train(args):
         save_dir=args.save_path,
         name='log'
     )
-    dataset = SNLIDataset(directory="/content/snli_1.0",  bert_path="/content/roberta_base")
-    train_loader = DataLoader(
-        dataset=dataset,
-        batch_size=10,
-        num_workers=0,
-        shuffle=False,
-        collate_fn=partial(collate_to_max_length, fill_values=[1, 0, 0])
-    )
     # save args
     with open(os.path.join(args.save_path, "args.json"), 'w') as f:
         args_dict = args.__dict__
