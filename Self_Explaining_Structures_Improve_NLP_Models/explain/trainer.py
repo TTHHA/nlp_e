@@ -152,11 +152,11 @@ class ExplainNLP(pl.LightningModule):
     def get_dataloader(self, prefix="train") -> DataLoader:
         """get training dataloader"""
         if self.args.task == 'snli':
-            dataset = SNLIDataset(directory=self.args.data_dir, prefix=prefix,
+            dataset = SNLIDataset(directory=self.args.data_dir, 
                                   bert_path=self.bert_dir,
                                   max_length=self.args.max_length)
         else:
-            dataset = SSTDataset(directory=self.args.data_dir, prefix=prefix,
+            dataset = SSTDataset(directory=self.args.data_dir, 
                                  bert_path=self.bert_dir,
                                  max_length=self.args.max_length)
         dataloader = DataLoader(
@@ -229,7 +229,7 @@ def train(args):
         save_dir=args.save_path,
         name='log'
     )
-    dataset = SNLIDataset(directory="/content/snli_1.0", prefix="train", bert_path="/content/roberta_base")
+    dataset = SNLIDataset(directory="/content/snli_1.0",  bert_path="/content/roberta_base")
     train_loader = DataLoader(
         dataset=dataset,
         batch_size=10,
