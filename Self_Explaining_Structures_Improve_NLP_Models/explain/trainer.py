@@ -236,7 +236,7 @@ def train(args):
         json.dump(args_dict, f, indent=4)
 
     trainer = Trainer(accelerator="cpu",logger=logger)
-    trainer.fit(model,train_dataloaders=train_loader)
+    trainer.fit(model)
 
 
 def evaluate(args):
