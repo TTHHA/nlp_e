@@ -23,7 +23,7 @@ from datasets.collate_functions import collate_to_max_length
 
 class SNLIDataset(Dataset):
 
-    def __init__(self, directory, bert_path, max_length: int = 512):
+    def __init__(self, directory, bert_path, max_length: int = 256):
         super().__init__()
         self.max_length = max_length
         label_map = {"SUPPORTED": 0, 'REFUTED': 1, "NEI": 2}
