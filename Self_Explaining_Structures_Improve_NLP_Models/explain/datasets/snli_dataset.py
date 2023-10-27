@@ -26,7 +26,7 @@ class SNLIDataset(Dataset):
     def __init__(self, directory, bert_path, max_length: int = 512):
         super().__init__()
         self.max_length = max_length
-        label_map = {"SUPPORT": 0, 'REFUTED': 1, "NEI": 2}
+        label_map = {"SUPPORTED": 0, 'REFUTED': 1, "NEI": 2}
         self.result = []
         data = pd.read_csv(directory)
         for i in range(len(data)):
