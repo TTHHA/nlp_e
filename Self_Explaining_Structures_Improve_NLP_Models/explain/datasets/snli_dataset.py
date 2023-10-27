@@ -16,25 +16,21 @@ from functools import partial
 import torch
 from torch.utils.data import Dataset, DataLoader
 from transformers import RobertaTokenizer
+import pandas as pd
 
 from datasets.collate_functions import collate_to_max_length
 
 
 class SNLIDataset(Dataset):
 
-    def __init__(self, directory, prefix, bert_path, max_length: int = 512):
+    def __init__(self, directory, bert_path, max_length: int = 512):
         super().__init__()
         self.max_length = max_length
-        label_map = {"contradiction": 0, 'neutral': 1, "entailment": 2}
-        with open(os.path.join(directory, 'snli_1.0_' + prefix + '.jsonl'), 'r', encoding='utf8') as f:
-            lines = f.readlines()
+        label_map = {"SUPPORT": 0, 'REFUTED': 1, "NEI": 2}
         self.result = []
-        for line in lines:
-            line_json = json.loads(line)
-            if line_json['gold_label'] not in label_map:
-                # print(line_json['gold_label'])
-                continue
-            self.result.append((line_json['sentence1'], line_json['sentence2'], label_map[line_json['gold_label']]))
+        data = pd.read_csv("/content/data.csv")
+        for i in range(len(data)):
+          self.result.append((data['claim'][i], data['evidence_top1'], label_map[data['verdict'][i]]))
         self.tokenizer = RobertaTokenizer.from_pretrained(bert_path)
 
     def __len__(self):
