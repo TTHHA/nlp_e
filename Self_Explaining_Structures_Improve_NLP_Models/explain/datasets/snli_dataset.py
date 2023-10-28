@@ -52,9 +52,9 @@ class SNLIDataset(Dataset):
         # length = torch.LongTensor([len(input_ids) + 2])
         # input_ids = torch.LongTensor([0] + input_ids + [2])
         # label = torch.LongTensor([label])
-        length = torch.Tensor([len(input_ids) + 2])
-        input_ids = torch.Tensor([0] + input_ids + [2])
-        label = torch.Tensor([label])
+        length = torch.LongTensor([len(input_ids) + 2])
+        input_ids = torch.LongTensor([0] + input_ids + [2])
+        label = torch.LongTensor([label])
         
         return input_ids, label, length
 
